@@ -1,16 +1,11 @@
 <?php
 include "scripts/global.php";
-$id = $_GET['id'];
-$sql1 = "SELECT `source`,`user` FROM `images` WHERE `id` = :id LIMIT 1";
-$sth1 = $pdocxn->prepare($sql1);
-$sth1->bindParam(':id',$id);
-$sth1->execute();
-while ($row1 = $sth1->fetch(PDO::FETCH_ASSOC))
-{
-$source = $row1['source'];
-$user = $row1['user'];
-}
-
+$sqlcxn = mysqli_connect($dbserver, $dbuser, $dbpw, $db);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
 <head>
@@ -73,40 +68,41 @@ $user = $row1['user'];
 	<div id="maincontainernst" class="clearfix">
 		<div id="main_lcol1">
 			<div id="main_lcol1nst">
-				<p style="text-align: left;"><span style="font-size: 13px;"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- memeslab-verticle -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:160px;height:600px"
-     data-ad-client="ca-pub-2057589821822878"
-     data-ad-slot="9606736844"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script></span></p>
 			</div>
 		</div>
 		<div id="main">
 			<div id="mainnst">
-<?php
-echo "<img src=\"images/upload/".$id.".gif\" width=\"540\">";
-echo "<br /> Source:".$source;
-echo "<br /> User:".$user;
-?>
 
+<table>
+<tr>
+<?php
+$nr = '0';
+
+$sql1 = "SELECT `id` FROM `images` ORDER BY `id` DESC";
+$query1 = mysqli_query($sqlcxn,$sql1);
+	while($row1 = mysqli_fetch_array($query1))
+{
+$id = $row1 ['id'];
+if($nr%9)
+{
+echo "<td><a href=\"meme.php?id=".$id." \"><img src=\"images/upload/".$id.".gif\" class=\"meme\" width=\"60\" heigth=\"60\"></a></td>";
+}
+else
+{
+echo "</tr><tr>";
+echo "<td><a href=\"meme.php?id=".$id." \"><img src=\"images/upload/".$id.".gif\" class=\"meme\" width=\"60\" heigth=\"60\"></a></td>";
+}
+$nr++;
+}
+
+
+?>
+</table>
 <span style="color: #800000;"><strong>rich-text</strong></span>
 			</div>
 		</div>
 		<div id="main_rcol1">
 			<div id="main_rcol1nst">
-				<p style="text-align: left;"><span style="font-size: 13px;"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- memeslab-verticle -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:160px;height:600px"
-     data-ad-client="ca-pub-2057589821822878"
-     data-ad-slot="9606736844"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</span></p>
 			</div>
 		</div>
 	</div>
