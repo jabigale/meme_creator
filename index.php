@@ -1,11 +1,16 @@
 <?php
 include "scripts/global.php";
-$sqlcxn = mysqli_connect($dbserver, $dbuser, $dbpw, $db);
-// Check connection
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
+$id = $_GET['id'];
+$sql1 = "SELECT `source`,`user` FROM `images` WHERE `id` = :id LIMIT 1";
+$sth1 = $pdocxn->prepare($sql1);
+$sth1->bindParam(':id',$id);
+$sth1->execute();
+while ($row1 = $sth1->fetch(PDO::FETCH_ASSOC))
+{
+$source = $row1['source'];
+$user = $row1['user'];
+}
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
 <head>
@@ -81,32 +86,11 @@ if (mysqli_connect_errno())
 		</div>
 		<div id="main">
 			<div id="mainnst">
-
-<table>
-<tr>
 <?php
-$nr = '0';
-
-$sql1 = "SELECT `id` FROM `images` ORDER BY `id` DESC";
-$query1 = mysqli_query($sqlcxn,$sql1);
-	while($row1 = mysqli_fetch_array($query1))
-{
-$id = $row1 ['id'];
-if($nr%9)
-{
-echo "<td><a href=\"meme.php?id=".$id." \"><img src=\"images/upload/".$id.".gif\" class=\"meme\" width=\"60\" heigth=\"60\"></a></td>";
-}
-else
-{
-echo "</tr><tr>";
-echo "<td><a href=\"meme.php?id=".$id." \"><img src=\"images/upload/".$id.".gif\" class=\"meme\" width=\"60\" heigth=\"60\"></a></td>";
-}
-$nr++;
-}
-
-
+echo "<img src=\"images/upload/".$id.".gif\" width=\"540\">";
+echo "<br /> Source:".$source;
+echo "<br /> User:".$user;
 ?>
-</table>
 
 <span style="color: #800000;"><strong>rich-text</strong></span>
 			</div>
