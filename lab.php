@@ -73,15 +73,6 @@ $user = $row1['user'];
 	<div id="maincontainernst" class="clearfix">
 		<div id="main_lcol1">
 			<div id="main_lcol1nst">
-				<p style="text-align: left;"><span style="font-size: 13px;"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- memeslab-verticle -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:160px;height:600px"
-     data-ad-client="ca-pub-2057589821822878"
-     data-ad-slot="9606736844"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script></span></p>
 			</div>
 		</div>
 		<div id="main">
@@ -97,16 +88,6 @@ echo "<br /> User:".$user;
 		</div>
 		<div id="main_rcol1">
 			<div id="main_rcol1nst">
-				<p style="text-align: left;"><span style="font-size: 13px;"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- memeslab-verticle -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:160px;height:600px"
-     data-ad-client="ca-pub-2057589821822878"
-     data-ad-slot="9606736844"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</span></p>
 			</div>
 		</div>
 	</div>
